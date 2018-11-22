@@ -24,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\FirstWCF.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -74,4 +75,15 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Target Name="AfterBuild" >
+  <ItemGroup>
+  <OriginalFile Include="C:\Users\Cristi Mark\Documents\WWWroot\FirstWCF\FirstWCF.svc" />    
+  <RenameFile Include="C:\Users\Cristi Mark\Documents\WWWroot\FirstWCF\FirstWCF.sv" />    
+</ItemGroup>    
+<Message Text="Move: @(OriginalFile) -> @(OriginalFile -> Replace('FirstWCF.svc', 'FirstWCF.sv'))" Importance="High" />
+<Move SourceFiles="@(OriginalFile)" DestinationFiles="@(OriginalFile -> Replace('FirstWCF.svc', 'FirstWCF.sv'))" />
+<Message Text="Done to rename" Importance="High" />
+<Move SourceFiles="@(RenameFile)" DestinationFiles="@(RenameFile -> Replace('FirstWCF.sv', 'FirstWCF.svc'))" />
+<Message Text="Back in business" Importance="High" />
+  </Target> 
 </Project>
